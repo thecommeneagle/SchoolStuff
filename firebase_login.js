@@ -9,25 +9,6 @@ const firebaseConfig = {
   measurementId: "G-TZQ1WF29Q2"
 };
 
-//firebase.initializeApp(firebaseConfig);
-
-const txtEmail = document.getElementById("txtemail");
-const txtPassword = document.getElementById("txtpassword");
-const btnLogin = document.getElementById("btnlogin");
-const btnSignup = document.getElementById("btnsignup");
-const btnLogout = document.getElementById("btnlogout");
-const loginStatus = document.getElementById("loginstatus");
-const txtEmailLabel = document.getElementById("txtemaillabel");
-const txtPasswordLabel = document.getElementById("txtpasswordlabel");
-
-btnLogin.addEventListener("click", e => {
-	const enteredEmail = txtEmail.value;
-	const enteredPassword = txtPassword.value;
-	const auth = firebase.auth();
-	const promise = auth.signInWithEmailAndPassword(enteredEmail, enteredPassword);
-    document.cookie="validSession=true";
-	promise.catch(e => alert("Log In Has Failed. \n" + e.message)); 
-});
 btnSignup.addEventListener("click", e => {
 	
 });
