@@ -8,7 +8,6 @@ function initMap () {
 	
 	const map = new google.maps.Map(document.getElementById("map"), {
 		zoom: 8,
-		center: {lat: 44.442254, lng: -110.721692},
 		mapTypeId: "terrain",
 	});
 	
