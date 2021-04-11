@@ -1,5 +1,5 @@
 firebase.initializeApp(firebaseConfig);
-var firebaseConfig = {
+const firebaseConfig = {
         apiKey: "AIzaSyDDNF17a20gd45kR0qT9gOsuiOmw4F0-bM",
         authDomain: "school-8b4c2.firebaseapp.com",
         databaseURL: "https://school-8b4c2-default-rtdb.europe-west1.firebasedatabase.app",
