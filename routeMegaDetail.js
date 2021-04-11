@@ -8,3 +8,20 @@ function initMap () {
 		{"routeHighlight": "s5", "coords":  {"lat":, "lng":    }},
 		
 	];
+	
+	const map = new google.maps.Map(document.getElementById("map"), {
+		zoom: 8,
+		center: {lat: 44.442254, lng: -110.721692},
+		mapTypeId: "terrain",
+	});
+	
+	for (let i = 0; i < routeHighlights.length; i++) {
+		const markerPos = new google.maps.LatLng(routeHighlights[i].coords.lat, routeHighlights[i].coords.lng);
+		const marker = new google.maps.Marker({
+			position: markerPos,
+			map: map,
+			title: "Your Route!." 
+	  });
+	   marker.setIcon("http://www.google.com/mapfiles/marker.png");
+	}
+}
