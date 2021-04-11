@@ -1,3 +1,4 @@
+firebase.initializeApp(firebaseConfig);
 var firebaseConfig = {
         apiKey: "AIzaSyDDNF17a20gd45kR0qT9gOsuiOmw4F0-bM",
         authDomain: "school-8b4c2.firebaseapp.com",
@@ -9,8 +10,6 @@ var firebaseConfig = {
         measurementId: "G-TZQ1WF29Q2"
     };
     // Initialize Firebase
-
-firebase.initializeApp(firebaseConfig);
 
 const txtEmail = document.getElementById("txtemail");
 const txtPassword = document.getElementById("txtpassword");
