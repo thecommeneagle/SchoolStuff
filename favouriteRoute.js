@@ -10,7 +10,7 @@
   appId: "1:936808835755:web:f01da99fc123b280f025ee",
   measurementId: "G-HCZQS5KLWS"
 };
-	
+	firebase.initializeApp(firebaseConfig);
 	
 	const sightingRef = firebase.database().ref("sightings");
 	
