@@ -1,49 +1,40 @@
-window.onload = getFavoriteRoute;
-
-let xhr = false;
-
-function getFavoriteRoute() {
-	if (window.XMLHttpRequest) {
-		xhr = new XMLHttpRequest();
-	} else {
-		if (window.ActiveXObject) {
-				xhr = newActiveXObject("Microsoft.XMLHTTP");
-		}
+(function () {
+	
+	const firebaseConfig = {
+  apiKey: "AIzaSyBbIavNFhISvn_eFyh8oiDdaj0FasrhpEM",
+  authDomain: "school-eb066.firebaseapp.com",
+  databaseURL: "https://school-eb066-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "school-eb066",
+  storageBucket: "school-eb066.appspot.com",
+  messagingSenderId: "936808835755",
+  appId: "1:936808835755:web:f01da99fc123b280f025ee",
+  measurementId: "G-HCZQS5KLWS"
+};
+	
+	
+	const sightingRef = firebase.database().ref("sightings");
+	
+	document.getElementById("frmbearsighting").addEventListener("submit", handleForm); 
+	
+	function handleForm(e){
+		e.preventDefault();
+		const sightingLocation = document.getElementById("txtlocation").value;
+		const sightingTime = document.getElementById("txttime").value;
+		const sightingDate = document.getElementById("txtdate").value;
+		const sightingObservations = document.getElementById("txtobservations").value;
+		saveSighting(sightingLocation, sightingTime, sightingDate, sightingObservations);
+		frmbearsighting.reset();
+		document.getElementById("sightingconfirmation").style.display = "block";
+	} 
+	
+	function saveSighting(sightingLocation, sightingTime, sightingDate, sightingObservations) {
+		let newSightingRef = sightingRef.push();
+		newSightingRef.set( {
+			sightingLocation: sightingLocation,
+			sightingTime: sightingTime,
+			sightingDate: sightingDate,
+			sightingObservations: sightingObservations
+		});
 	}
-	if (xhr) {
-		xhr.open("GET", "data/routes.json", true);
-		xhr.send(); 
-		xhr.onreadystatechange = displayFavoriteTrails; 
-	} else {
-		document.getElementById("statusmessage").innerHTML = "Error";
-	}	
-}
-
-function displayFavoriteRoute () {
-	if (xhr.readyState == 4) {
-	    if (xhr.status == 200) {
-		    const data = JSON.parse(xhr.responseText); 
-			let dataText = "";
-			const favorites = getLocalStorage();
-			for (let l = 0; l < favorites.length; l++){
-				for (let i in data.trails) {
-					if (parseInt(favorites[l]) === parseInt(data.trails[i].trailID)){
-					dataText += "<tr><td class='text-left'><h5 class='mr-4'>" + 
-					data.route[i].name + "</h5></td><td>" +
-					"<a href='trail-details.html?trailId=" + data.route[i].routeID + "' class='btn btn-sm btn-primary mr-4'>Details</a>" + 
-					"</td><td>" + "<i class='fa fa-trash fa-2x' aria-hidden='true'></i>" + 
-					"</td></tr>";
-					}
-				}
-			}
-			document.getElementById("insertpoint").innerHTML = dataText;
-		} else {
-		document.getElementById("statusmessage").innerHTML = "Error." + xhr.status;
-		}
-	}
-}
-
-function getLocalStorage() {
-	let trailFavorites = JSON.parse(window.localStorage.getItem('routes'));
-	return trailFavorites;
-}
+	
+} ());
